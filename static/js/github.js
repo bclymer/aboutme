@@ -1,0 +1,5 @@
+(function() {
+	AboutMe.github = function() {
+		
+	}
+})();

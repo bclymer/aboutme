@@ -1,0 +1,5 @@
+(function() {
+	AboutMe.twitter = function() {
+		
+	}
+})();
