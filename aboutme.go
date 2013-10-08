@@ -9,6 +9,10 @@ import (
 	"path/filepath"
 )
 
+const (
+	stackId = "650288"
+)
+
 var (
 	curDir string
 )
@@ -20,6 +24,11 @@ func Index(w http.ResponseWriter, req *http.Request) (string, int) {
 		panic(err)
 	}
 	return string(content), http.StatusOK
+}
+
+func stack(w http.ResponseWriter, req *http.Request) (string, int) {
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	return aboutme.Get("http://api.stackexchange.com/users/" + stackId + "/timeline?site=stackoverflow.com"), http.StatusOK
 }
 
 func Page404(w http.ResponseWriter, req *http.Request) (string, int) {
@@ -38,7 +47,8 @@ func main() {
 	App.AddURLs(
 		wedge.Favicon(filepath.Join(curDir, "static/images", "favicon.ico")),
 		wedge.StaticFiles("/static/", filepath.Join(curDir, "static/")),
-		wedge.CacheURL("^/$", "Index", Index, wedge.HTML, -1),
+		wedge.URL("stack", "stackoverflow", stack, wedge.HTML),
+		wedge.URL("^/$", "Index", Index, wedge.HTML), //, -1),
 	)
 	App.Handler404(Page404)
 	//App.EnableStatTracking() // stat tracking on ^/statistics/?$
