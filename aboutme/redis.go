@@ -22,7 +22,7 @@ type RedisAuth struct {
 
 func ConnectRedis() *redis.Client {
 	var redisAuth RedisAuth
-	content, err := ioutil.ReadFile("redisAuth.json")
+	content, err := ioutil.ReadFile("aboutme/redisAuth.json")
 	if err != nil {
 		panic(err)
 	}

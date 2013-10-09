@@ -12,30 +12,24 @@
   Brian Clymer - What I've Been Doing
 </div>
 <ul class="gNow" id="stack-cards">
+<h2 class="header">stackoverflow</h2>
 </ul>
 <ul class="gNow" id="github-cards">
+<h2 class="header">github</h2>
 </ul>
 <ul class="gNow" id="twitter-cards">
+<h2 class="header">twitter</h2>
 </ul>
 <ul class="gNow" id="facebook-cards">
+<h2 class="header">facebook</h2>
 </ul>
 
 <script id="stack-template" type="text/x-handlebars-template">
 	<li><div class="card">
-	<p class="card-title"><a href="http://stackoverflow.com/questions/{{post_id}}">I 
-	{{#ifEq timeline_type "answered"}}
-		answered a questions
-	{{else}}
-		commented on 
-		{{#ifEq post_type "question"}}
-			a
-		{{else}}
-			an
-		{{/ifEq}}
-		{{post_type}}</a>
-	{{/ifEq}}
-	</a></p>
-	<p>I did this {{#timeagoHelper creation_date}}{{timeagoValue}}{{/timeagoHelper}}</p>
+	<p class="card-title">{{#timeagoHelper creation_date}}{{timeagoValue}}{{/timeagoHelper}}</p>
+	<p>I {{#ifEq timeline_type "answered"}}answered the question "{{{title}}}".{{else}}commented on {{#ifEq post_type "question"}}the question "{{{title}}}"{{else}}an answer.{{/ifEq}}{{/ifEq}}</p>
+	{{#if detail}}<p>"{{{detail}}}"</p>{{/if}}
+	<p class="url"><a href="http://stackoverflow.com/questions/{{post_id}}" target="_blank">Check it out</a></p>
 	</div></li>
 </script>
 <script src="static/js/jquery-2.0.3.min.js"></script>

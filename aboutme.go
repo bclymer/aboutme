@@ -1,12 +1,10 @@
-package main
+package aboutme
 
 import (
-	"aboutme/aboutme"
-	"github.com/AeroNotix/wedge"
-	"io/ioutil"
+	"bclymer/aboutme/aboutme"
+	"fmt"
+	"log"
 	"net/http"
-	"os"
-	"path/filepath"
 )
 
 const (
@@ -17,40 +15,27 @@ var (
 	curDir string
 )
 
-// Main page
-func Index(w http.ResponseWriter, req *http.Request) (string, int) {
-	content, err := ioutil.ReadFile("index.html")
-	if err != nil {
-		panic(err)
-	}
-	return string(content), http.StatusOK
+func Index(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "aboutme/index.html")
 }
 
-func stack(w http.ResponseWriter, req *http.Request) (string, int) {
+func stack(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	return aboutme.Get("http://api.stackexchange.com/users/" + stackId + "/timeline?site=stackoverflow.com"), http.StatusOK
+	fmt.Fprint(w, aboutme.Get("http://api.stackexchange.com/users/"+stackId+"/timeline?site=stackoverflow.com"))
 }
 
 func Page404(w http.ResponseWriter, req *http.Request) (string, int) {
 	return "An oopsie!", http.StatusNotFound
 }
 
-func main() {
-	if curDir == "" {
-		curDir, _ = os.Getwd()
-	}
-
+func StartServer(urlPrefix string) {
 	redisClient := aboutme.ConnectRedis()
 	defer redisClient.Quit()
 
-	App := wedge.NewAppServer("8080", 30)
-	App.AddURLs(
-		wedge.Favicon(filepath.Join(curDir, "static/images", "favicon.ico")),
-		wedge.StaticFiles("/static/", filepath.Join(curDir, "static/")),
-		wedge.URL("stack", "stackoverflow", stack, wedge.HTML),
-		wedge.URL("^/$", "Index", Index, wedge.HTML), //, -1),
-	)
-	App.Handler404(Page404)
-	//App.EnableStatTracking() // stat tracking on ^/statistics/?$
-	App.Run()
+	if urlPrefix != "" {
+		urlPrefix = "/" + urlPrefix
+	}
+
+	http.HandleFunc(urlPrefix+"/", Index)
+	log.Println("aboutme is running...")
 }
