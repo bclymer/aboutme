@@ -37,5 +37,7 @@ func StartServer(urlPrefix string) {
 	}
 
 	http.HandleFunc(urlPrefix+"/", Index)
+	http.HandleFunc(urlPrefix+"/stack", stack)
+	http.Handle(urlPrefix+"/static/", http.StripPrefix(urlPrefix+"/static", http.FileServer(http.Dir("aboutme/static"))))
 	log.Println("aboutme is running...")
 }
