@@ -3,7 +3,6 @@ package aboutme
 import (
 	"encoding/json"
 	"io/ioutil"
-	"log"
 	"menteslibres.net/gosexy/redis"
 )
 
