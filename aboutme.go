@@ -4,6 +4,7 @@ import (
 	"bclymer/aboutme/aboutme"
 	"fmt"
 	"log"
+	"menteslibres.net/gosexy/redis"
 	"net/http"
 )
 
@@ -24,13 +25,8 @@ func stack(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, aboutme.Get("http://api.stackexchange.com/users/"+stackId+"/timeline?site=stackoverflow.com"))
 }
 
-func Page404(w http.ResponseWriter, req *http.Request) (string, int) {
-	return "An oopsie!", http.StatusNotFound
-}
-
-func StartServer(urlPrefix string) {
+func StartServer(urlPrefix string) *redis.Client {
 	redisClient := aboutme.ConnectRedis()
-	defer redisClient.Quit()
 
 	if urlPrefix != "" {
 		urlPrefix = "/" + urlPrefix
@@ -40,4 +36,5 @@ func StartServer(urlPrefix string) {
 	http.HandleFunc(urlPrefix+"/stack", stack)
 	http.Handle(urlPrefix+"/static/", http.StripPrefix(urlPrefix+"/static", http.FileServer(http.Dir("aboutme/static"))))
 	log.Println("aboutme is running...")
+	return redisClient
 }

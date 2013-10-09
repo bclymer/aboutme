@@ -33,7 +33,7 @@ func ConnectRedis() *redis.Client {
 	client = redis.New()
 	err = client.Connect("bclymer.com", 6379)
 	if err != nil {
-		log.Fatalln("Connect to Redis:", err)
+		panic(err)
 	}
 	_, err = client.Auth(redisAuth.Password)
 	if err != nil {

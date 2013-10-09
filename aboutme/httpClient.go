@@ -9,7 +9,7 @@ import (
 func Get(url string) string {
 	cachedResponse, err := RedisGet(url)
 	if err != nil {
-		log.Println("Cache miss -", url)
+		log.Println("Cache miss -", url, err)
 		response, err := http.Get(url)
 		if err != nil {
 			log.Printf("%s", err)
