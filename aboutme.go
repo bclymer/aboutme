@@ -12,11 +12,7 @@ const (
 	stackId = "650288"
 )
 
-var (
-	curDir string
-)
-
-func Index(w http.ResponseWriter, r *http.Request) {
+func handler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "aboutme/index.html")
 }
 
@@ -32,7 +28,7 @@ func StartServer(urlPrefix string) *redis.Client {
 		urlPrefix = "/" + urlPrefix
 	}
 
-	http.HandleFunc(urlPrefix+"/", Index)
+	http.HandleFunc(urlPrefix+"/", handler)
 	http.HandleFunc(urlPrefix+"/stack", stack)
 	http.Handle(urlPrefix+"/static/", http.StripPrefix(urlPrefix+"/static", http.FileServer(http.Dir("aboutme/static"))))
 	log.Println("aboutme is running...")
