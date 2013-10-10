@@ -1,36 +1,56 @@
 package aboutme
 
+//package main
+
 import (
 	"bclymer/aboutme/aboutme"
-	"fmt"
+	"io/ioutil"
 	"log"
-	"menteslibres.net/gosexy/redis"
 	"net/http"
+	"os"
 )
 
 const (
-	stackId = "650288"
+	urlPrefix    = "/me"
+	folderPrefix = "aboutme/"
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "aboutme/index.html")
 }
 
-func stack(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	fmt.Fprint(w, aboutme.Get("http://api.stackexchange.com/users/"+stackId+"/timeline?site=stackoverflow.com"))
+func unsupported(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "POST" {
+		// let them know post only
+		return
+	}
+	file, err := os.OpenFile("aboutme/unsupported.txt", os.O_RDWR|os.O_APPEND, 0666)
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	body, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	file.Write(body)
+	file.Close()
 }
 
-func StartServer(urlPrefix string) *redis.Client {
-	redisClient := aboutme.ConnectRedis()
-
-	if urlPrefix != "" {
-		urlPrefix = "/" + urlPrefix
-	}
+func main() {
+	aboutme.ConnectRedis()
 
 	http.HandleFunc(urlPrefix+"/", handler)
-	http.HandleFunc(urlPrefix+"/stack", stack)
-	http.Handle(urlPrefix+"/static/", http.StripPrefix(urlPrefix+"/static", http.FileServer(http.Dir("aboutme/static"))))
+	http.HandleFunc(urlPrefix+"/stack/timeline", aboutme.StackTimeline)
+	http.HandleFunc(urlPrefix+"/stack/me", aboutme.StackUser)
+	http.HandleFunc(urlPrefix+"/github/events", aboutme.GithubEvents)
+	http.HandleFunc(urlPrefix+"/github/me", aboutme.GithubUser)
+	http.HandleFunc(urlPrefix+"/unsupported", unsupported)
+	http.Handle(urlPrefix+"/static/", http.StripPrefix(urlPrefix+"/static", http.FileServer(http.Dir(folderPrefix+"static"))))
 	log.Println("aboutme is running...")
-	return redisClient
+}
+
+func StartServer() {
+	main()
 }

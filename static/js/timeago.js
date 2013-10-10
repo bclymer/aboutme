@@ -6,14 +6,18 @@
 
 		// modified http://stackoverflow.com/questions/6108819/javascript-timestamp-to-relative-time-eg-2-seconds-ago-one-week-ago-etc-best
 		function timeDifference(previous) {
+
 		    var secPerMinute = 60;
 		    var secPerHour = secPerMinute * 60;
 		    var secPerDay = secPerHour * 24;
 		    var secPerMonth = secPerDay * 30;
 		    var secPerYear = secPerDay * 365;
-
 			var now = new Date();
 			var utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000).getTime();
+
+			if (!Number(previous)) {
+				previous = new Date(previous).getTime() / 1000;
+			}
 		    var elapsed = Math.round(utc / 1000) - previous;
 
 		    if (elapsed < secPerMinute) {
