@@ -12,8 +12,7 @@
 		    var secPerDay = secPerHour * 24;
 		    var secPerMonth = secPerDay * 30;
 		    var secPerYear = secPerDay * 365;
-			var now = new Date();
-			var utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000).getTime();
+			var utc = new Date().getTime();
 
 			if (!Number(previous)) {
 				previous = new Date(previous).getTime() / 1000;
