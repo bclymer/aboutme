@@ -16,7 +16,7 @@
 					$('#github-cards').append(AboutMe.cardTemplate({ template: templates[item.type](item) }));
 				} else {
 					// report that I don't support this type of event.
-					//$.post("/me/unsupported", item, "json");
+					$.post("/me/unsupported", JSON.stringify(item));
 				}
 			});
 		}, "json");
