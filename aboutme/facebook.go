@@ -1,5 +1,7 @@
 package aboutme
 
-import (
+import ()
 
+const (
+	FacebookId = "crdnilfan"
 )

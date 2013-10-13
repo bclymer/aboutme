@@ -26,22 +26,22 @@ div.topMenu {
     padding-left: 20px;
     padding-top: 5px;
 }
-ul.gNow {
-    width: 450px;
-    height: 100%;
+div.gNow {
     float: left;
+    width: 400px;
+    height: 100%;
     padding: 0;
     margin-top: 35px;
 }
-ul.gNow li {
-    width: 430px;
+div.gNow li {
+    width: 380px;
     float: left;
     list-style: none;
     padding: 10px;
 }
 div.card {
     background: #ffffff;
-    width: 400px;
+    width: 350px;
     position: relative;
     padding: 15px;
     box-shadow: 1px 3px rgba( 0, 0, 0, 0.1 );
@@ -58,7 +58,7 @@ div.card p { margin: 0 0 15px 0 }
 div.card p.card-title { font-size: 28px }
 div.card p.url {
     border-top: 1px solid #e5e5e5;
-    background-image: url('http://www.eriklindemann.com/wp-content/uploads/2013/05/url.png');
+    background-image: url('/me/static/images/url.png');
     background-repeat: no-repeat;
     padding: 6px 0 0 30px;
     height: 30px;
@@ -69,14 +69,98 @@ div.card p.url a {
     color: #04bff4;
     text-decoration: none;
     top: 4px;
-    width: 385px;
+    width: 335px;
     display: block;
     position: relative;
 }
 div.card img.full {
-    width: 430px;
+    width: 380px;
     margin: 0 0 15px -15px;
 }
 h2.header {
-  margin-left: 15px;
+    margin-left: 15px;
 }
+span.cardType {
+    color: #b5b5b5;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: none;
+}
+div.container {
+    width: 1640px;
+    max-width: 1640px;
+}
+/*
+@media (min-width: 1900px) {
+    .tech-small {
+        display: none;
+    }
+    .social-small {
+        display: none;   
+    }
+    .tech-large {
+        display: block;
+    }
+    .social-large {
+        display: block;
+    }
+    .all-small {
+        display: none;
+    }
+}
+
+@media (min-width: 1800px) and (max-width: 1899px) {
+    .tech-small {
+        display: none;
+    }
+    .social-small {
+        display: block;   
+    }
+    .tech-large {
+        display: block;
+    }
+    .social-large {
+        display: none;
+    }
+    .all-small {
+        display: none;
+    }
+}
+
+@media (min-width: 1700px) and (max-width: 1799px) {
+    .tech-small {
+        display: block;
+    }
+    .social-small {
+        display: block;
+    }
+    .tech-large {
+        display: none;
+    }
+    .social-large {
+        display: none;
+    }
+    .all-small {
+        display: none;
+    }
+}
+
+@media (max-width: 1699px) {
+    .tech-small {
+        display: none;
+    }
+    .social-small {
+        display: none;
+    }
+    .tech-large {
+        display: none;
+    }
+    .social-large {
+        display: none;
+    }
+    .all-small {
+        display: block;
+    }
+}
+*/
