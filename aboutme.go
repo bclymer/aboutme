@@ -51,12 +51,17 @@ const configJsConst = `(function () {
 func main() {
 	aboutme.ConnectRedis()
 
+	notifier := make(chan bool)
+	aboutme.Setup(notifier)
+	<-notifier
+
 	http.HandleFunc(urlPrefix+"/", handler)
 	http.HandleFunc(urlPrefix+"/stack/timeline", aboutme.StackTimeline)
 	http.HandleFunc(urlPrefix+"/stack/me", aboutme.StackUser)
 	http.HandleFunc(urlPrefix+"/github/events", aboutme.GithubEvents)
 	http.HandleFunc(urlPrefix+"/github/me", aboutme.GithubUser)
 	http.HandleFunc(urlPrefix+"/twitter/timeline", aboutme.TwitterTimeline)
+	http.HandleFunc(urlPrefix+"/facebook/feed", aboutme.FacebookFeed)
 	http.HandleFunc(urlPrefix+"/unsupported", aboutme.GithubUnsupported)
 	http.HandleFunc(urlPrefix+"/js/config.js", config)
 	http.Handle(urlPrefix+"/static/", http.StripPrefix(urlPrefix+"/static", http.FileServer(http.Dir(folderPrefix+"static"))))

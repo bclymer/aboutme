@@ -28,21 +28,20 @@ div.topMenu {
 }
 div.gNow {
     float: left;
-    width: 400px;
     height: 100%;
     padding: 0;
     margin-top: 35px;
 }
 div.gNow li {
-    width: 380px;
     float: left;
+    width: 100%;
     list-style: none;
     padding: 10px;
 }
 div.card {
     background: #ffffff;
-    width: 350px;
     position: relative;
+    width: 100%;
     padding: 15px;
     box-shadow: 1px 3px rgba( 0, 0, 0, 0.1 );
     font-family: Open Sans;
@@ -69,12 +68,10 @@ div.card p.url a {
     color: #04bff4;
     text-decoration: none;
     top: 4px;
-    width: 335px;
     display: block;
     position: relative;
 }
 div.card img.full {
-    width: 380px;
     margin: 0 0 15px -15px;
 }
 h2.header {
@@ -85,55 +82,87 @@ span.cardType {
     position: absolute;
     top: 5px;
     right: 5px;
-    display: none;
 }
 div.container {
     width: 1640px;
     max-width: 1640px;
 }
-/*
-@media (min-width: 1900px) {
+.tech-small {
+    width: 50%;
+}
+.social-small {
+    width: 50%;  
+}
+.tech-large {
+    width: 25%;
+}
+.social-large {
+    width: 25%;
+}
+.all-small {
+    width: 100%;
+}
+
+@media (min-width: 1600px) {
     .tech-small {
         display: none;
     }
     .social-small {
-        display: none;   
+        display: none;
     }
     .tech-large {
         display: block;
+        width: 25%;
     }
     .social-large {
         display: block;
+        width: 25%;
     }
     .all-small {
+        display: none;
+    }
+    .tech-small-label {
+        display: none;
+    }
+    .social-small-label {
         display: none;
     }
 }
 
-@media (min-width: 1800px) and (max-width: 1899px) {
+@media (min-width: 1200px) and (max-width: 1599px) {
     .tech-small {
         display: none;
     }
     .social-small {
-        display: block;   
+        display: block;
+        width: 33%;
     }
     .tech-large {
         display: block;
+        width: 33%;
     }
     .social-large {
         display: none;
     }
     .all-small {
         display: none;
+    }
+    .tech-small-label {
+        display: none;
+    }
+    .social-small-label {
+        display: block;
     }
 }
 
-@media (min-width: 1700px) and (max-width: 1799px) {
+@media (min-width: 800px) and (max-width: 1199px) {
     .tech-small {
         display: block;
+        width: 50%;
     }
     .social-small {
         display: block;
+        width: 50%;
     }
     .tech-large {
         display: none;
@@ -143,10 +172,16 @@ div.container {
     }
     .all-small {
         display: none;
+    }
+    .tech-small-label {
+        display: block;
+    }
+    .social-small-label {
+        display: block;
     }
 }
 
-@media (max-width: 1699px) {
+@media (max-width: 799px) {
     .tech-small {
         display: none;
     }
@@ -162,5 +197,10 @@ div.container {
     .all-small {
         display: block;
     }
+    .tech-small-label {
+        display: block;
+    }
+    .social-small-label {
+        display: block;
+    }
 }
-*/

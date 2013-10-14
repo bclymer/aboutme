@@ -12,33 +12,30 @@
 <div class="topMenu">
   Brian Clymer - What I've Been Doing
 </div>
-<div class="container">
-		<div class="gNow tech-large col-md-3" id="stack-cards">
-			<h2 class="header tech-large" id="stack-link"></h2>
-			<li id="stack-user"></li>
-		</div>
-		<div class="gNow tech-large col-md-3" id="github-cards">
-			<h2 class="header tech-large" id="github-link"></h2>
-			<li id="github-user"></li>
-		</div>
-		<div class="gNow social-large col-md-3" id="twitter-cards">
-			<h2 class="header social-large" id="twitter-link"></h2>
-			<li id="twitter-user"></li>
-		</div>
-		<div class="gNow social-large col-md-3" id="facebook-cards">
-			<h2 class="header social-large" id="facebook-link"></h2>
-			<li id="facebook-user"></li>
-		</div><!--
-		<div class="gNow tech-small" id="tech-cards">
-		<h2 class="header tech-small">technology</h2>
-		</div>
-		<div class="gNow social-small" id="social-cards">
-		<h2 class="header social-small">social</h2>
-		</div>
-		<div class="gNow all-small" id="all-cards">
-		</div>-->
-		
-</div>
+	<div class="gNow tech-large" id="stack-cards">
+		<h2 class="header tech-large" id="stack-link"></h2>
+		<li id="stack-user"></li>
+	</div>
+	<div class="gNow tech-large" id="github-cards">
+		<h2 class="header tech-large" id="github-link"></h2>
+		<li id="github-user"></li>
+	</div>
+	<div class="gNow social-large" id="twitter-cards">
+		<h2 class="header social-large" id="twitter-link"></h2>
+		<li id="twitter-user"></li>
+	</div>
+	<div class="gNow social-large" id="facebook-cards">
+		<h2 class="header social-large" id="facebook-link"></h2>
+		<li id="facebook-user"></li>
+	</div>
+	<div class="gNow tech-small" id="tech-cards">
+	<h2 class="header tech-small">technology</h2>
+	</div>
+	<div class="gNow social-small" id="social-cards">
+	<h2 class="header social-small">social</h2>
+	</div>
+	<div class="gNow all-small" id="all-cards">
+	</div>
 
 <script id="card-template" type="text/x-handlebars-template">
 	<li>
@@ -53,7 +50,7 @@
 -->
 <script id="stack-user-template" type="text/x-handlebars-template">
 	<div class="card">
-		<span class="cardType tech-small"><a href="http://stackoverflow.com/users/{{user_id}}" target="_blank">stackoverflow</a></span>
+		<span class="cardType tech-small-label"><a href="http://stackoverflow.com/users/{{user_id}}" target="_blank">stackoverflow</a></span>
 		<p class="card-title">{{display_name}}</p>
 		<p>I created my account {{#timeagoHelper creation_date}}{{timeagoValue}}{{/timeagoHelper}}, and was last online {{#timeagoHelper last_access_date}}{{timeagoValue}}{{/timeagoHelper}}.</p>
 		<p>I have {{reputation}} reputation, which has earned me
@@ -65,7 +62,7 @@
 </script>
 
 <script id="stack-commented-template" type="text/x-handlebars-template">
-	<span class="cardType tech-small"><a href="http://stackoverflow.com/users/{{user_id}}" target="_blank">stackoverflow</a></span>
+	<span class="cardType tech-small-label"><a href="http://stackoverflow.com/users/{{user_id}}" target="_blank">stackoverflow</a></span>
 	<p class="card-title">{{#timeagoHelper creation_date}}{{timeagoValue}}{{/timeagoHelper}}</p>
 	<p>I commented on {{#ifEq post_type "answer"}}an answer to{{/ifEq}} the question "{{{title}}}".</p>
 	<p>"{{{detail}}}".</p>
@@ -73,21 +70,21 @@
 </script>
 
 <script id="stack-answered-template" type="text/x-handlebars-template">
-	<span class="cardType tech-small"><a href="http://stackoverflow.com/users/{{user_id}}" target="_blank">stackoverflow</a></span>
+	<span class="cardType tech-small-label"><a href="http://stackoverflow.com/users/{{user_id}}" target="_blank">stackoverflow</a></span>
 	<p class="card-title">{{#timeagoHelper creation_date}}{{timeagoValue}}{{/timeagoHelper}}</p>
 	<p>I answered the question "{{{title}}}".</p>
 	<p class="url"><a href="http://stackoverflow.com/questions/{{post_id}}" target="_blank">See my answer</a></p>
 </script>
 
 <script id="stack-suggested-template" type="text/x-handlebars-template">
-	<span class="cardType tech-small"><a href="http://stackoverflow.com/users/{{user_id}}" target="_blank">stackoverflow</a></span>
+	<span class="cardType tech-small-label"><a href="http://stackoverflow.com/users/{{user_id}}" target="_blank">stackoverflow</a></span>
 	<p class="card-title">{{#timeagoHelper creation_date}}{{timeagoValue}}{{/timeagoHelper}}</p>
 	<p>I suggested an edit to the post {{{title}}}.</p>
 	<p class="url"><a href="http://stackoverflow.com/suggested-edits/{{suggested_edit_id}}" target="_blank">See my suggestion</a></p>
 </script>
 
 <script id="stack-badge-template" type="text/x-handlebars-template">
-	<span class="cardType tech-small"><a href="http://stackoverflow.com/users/{{user_id}}" target="_blank">stackoverflow</a></span>
+	<span class="cardType tech-small-label"><a href="http://stackoverflow.com/users/{{user_id}}" target="_blank">stackoverflow</a></span>
 	<p class="card-title">{{#timeagoHelper creation_date}}{{timeagoValue}}{{/timeagoHelper}}</p>
 	<p>I earned the badge <a href="http://stackoverflow.com/help/badges/{{badge_id}}" target="_blank">{{detail}}</a>.</p>
 	<p class="url"><a href="http://stackoverflow.com/users/{{user_id}}/?tab=badges" target="_blank">See all my badges</a></p>
@@ -98,39 +95,39 @@
 -->
 <script id="github-user-template" type="text/x-handlebars-template">
 	<div class="card">
-		<span class="cardType tech-small"><a href="https://github.com/{{login}}" target="_blank">github</a></span>
+		<span class="cardType tech-small-label"><a href="https://github.com/{{login}}" target="_blank">github</a></span>
 		<p class="card-title">{{login}}</p>
 		<p>I created my account {{#timeagoHelper created_at}}{{timeagoValue}}{{/timeagoHelper}}, and last updated it {{#timeagoHelper updated_at}}{{timeagoValue}}{{/timeagoHelper}}.</p>
 		<p>I have {{public_repos}} public repos, am <a href="https://github.com/{{login}}/following">following {{following}} people</a> and am <a href="https://github.com/{{login}}/followers">followed by {{followers}}</a>.</p>
 		<p>I have {{public_gists}} <a href="https://gist.github.com/{{login}}">public gists available</a>.</p>
-		<p class="url"><a href="{{html_url}}" target="_blank">My github profile</a></p>
+		<p class="url"><a href="{{html_url}}" target="_blank">See my github profile</a></p>
 	</div>
 </script>
 
 <script id="github-PushEvent-template" type="text/x-handlebars-template">
-	<span class="cardType tech-small"><a href="https://github.com/{{login}}" target="_blank">github</a></span>
+	<span class="cardType tech-small-label"><a href="https://github.com/{{login}}" target="_blank">github</a></span>
 	<p class="card-title">{{#timeagoHelper created_at}}{{timeagoValue}}{{/timeagoHelper}}</p>
 	<p>I pushed bits to <a href="https://www.github.com/{{repo.name}}" target="_blank">{{repo.name}}</a> with commit message "{{payload.commits.0.message}}".</p>
 	<p class="url"><a href="https://www.github.com/{{repo.name}}/commit/{{payload.commits.0.sha}}" target="_blank">See it here</a></p>
 </script>
 
 <script id="github-IssuesEvent-template" type="text/x-handlebars-template">
-	<span class="cardType tech-small"><a href="https://github.com/{{login}}" target="_blank">github</a></span>
+	<span class="cardType tech-small-label"><a href="https://github.com/{{login}}" target="_blank">github</a></span>
 	<p class="card-title">{{#timeagoHelper created_at}}{{timeagoValue}}{{/timeagoHelper}}</p>
 	<p>I {{payload.action}} the issue "{{payload.issue.title}}" in <a href="https://www.github.com/{{repo.name}}" target="_blank">{{repo.name}}</a>
 	<p class="url"><a href="{{payload.issue.html_url}}" target="_blank">See it here</a></p>
 </script>
 
 <script id="github-IssueCommentEvent-template" type="text/x-handlebars-template">
-	<span class="cardType tech-small"><a href="https://github.com/{{login}}" target="_blank">github</a></span>
+	<span class="cardType tech-small-label"><a href="https://github.com/{{login}}" target="_blank">github</a></span>
 	<p class="card-title">{{#timeagoHelper created_at}}{{timeagoValue}}{{/timeagoHelper}}</p>
 	<p>I commented on the issue "{{payload.issue.title}}" in <a href="https://www.github.com/{{repo.name}}" target="_blank">{{repo.name}}</a></p>
 	<p>"{{payload.comment.body}}"</p>
-	<p class="url"><a href="{{payload.comment.html_url}}" target="_blank">See it here.</a></p>
+	<p class="url"><a href="{{payload.comment.html_url}}" target="_blank">See it here</a></p>
 </script>
 
 <script id="github-DeleteEvent-template" type="text/x-handlebars-template">
-	<span class="cardType tech-small"><a href="https://github.com/{{login}}" target="_blank">github</a></span>
+	<span class="cardType tech-small-label"><a href="https://github.com/{{login}}" target="_blank">github</a></span>
 	<p class="card-title">{{#timeagoHelper created_at}}{{timeagoValue}}{{/timeagoHelper}}</p>
 	<p>I deleted the {{payload.ref_type}}
 	{{#ifEq payload.ref_type "repository"}}
@@ -138,11 +135,11 @@
 	{{else}}
 		{{payload.ref}} in {{repo.name}}
 	{{/ifEq}}</p>
-	<p class="url"><a href="/me/static/images/hehe.jpg" target="_blank">See what here? I deleted it.</a></p>
+	<p class="url"><a href="/me/static/images/hehe.jpg" target="_blank">See what here? I deleted it</a></p>
 </script>
 
 <script id="github-CreateEvent-template" type="text/x-handlebars-template">
-	<span class="cardType tech-small"><a href="https://github.com/{{login}}" target="_blank">github</a></span>
+	<span class="cardType tech-small-label"><a href="https://github.com/{{login}}" target="_blank">github</a></span>
 	<p class="card-title">{{#timeagoHelper created_at}}{{timeagoValue}}{{/timeagoHelper}}</p>
 	<p>I created the {{payload.ref_type}}
 	{{#ifEq payload.ref_type "repository"}}
@@ -155,10 +152,10 @@
 </script>
 
 <script id="github-FollowEvent-template" type="text/x-handlebars-template">
-	<span class="cardType tech-small"><a href="https://github.com/{{login}}" target="_blank">github</a></span>
+	<span class="cardType tech-small-label"><a href="https://github.com/{{login}}" target="_blank">github</a></span>
 	<p class="card-title">{{#timeagoHelper created_at}}{{timeagoValue}}{{/timeagoHelper}}</p>
 	<p>I started following <a href="{{payload.target.html_url}}">{{payload.target.name}}</a>
-	<p class="url"><a href="https://github.com/{{login}}/following" target="_blank">See who I am following.</a></p>
+	<p class="url"><a href="https://github.com/{{login}}/following" target="_blank">See who I am following</a></p>
 </script>
 
 <!--
@@ -166,19 +163,39 @@
 -->
 <script id="twitter-user-template" type="text/x-handlebars-template">
 	<div class="card">
-		<span class="cardType social-social"><a href="https://twitter.com/{{user.screen_name}}" target="_blank">twitter</a></span>
+		<span class="cardType social-small-label"><a href="https://twitter.com/{{user.screen_name}}" target="_blank">twitter</a></span>
 		<p class="card-title">{{user.screen_name}}</p>
 		<p>I created my account {{#timeagoHelper user.created_at}}{{timeagoValue}}{{/timeagoHelper}}, I have {{user.followers_count}} followers and am following {{user.friends_count}} people, and have tweeted {{user.statuses_count}} times.</p>
-		<p class="url"><a href="https://twitter.com/{{user.screen_name}}" target="_blank">My twitter profile</a></p>
+		<p class="url"><a href="https://twitter.com/{{user.screen_name}}" target="_blank">See my twitter profile</a></p>
 	</div>
 </script>
 
 <script id="twitter-timeline-template" type="text/x-handlebars-template">
-	<span class="cardType social-social"><a href="https://twitter.com/{{user.screen_name}}" target="_blank">twitter</a></span>
+	<span class="cardType social-small-label"><a href="https://twitter.com/{{user.screen_name}}" target="_blank">twitter</a></span>
 	<p class="card-title">{{#timeagoHelper created_at}}{{timeagoValue}}{{/timeagoHelper}}</p>
 	<p>I tweeted "{{text}}"</p>
 	<p class="url"><a href="https://twitter.com/{{user.screen_name}}/status/{{id_str}}" target="_blank">See it here</a></p>
 </script>
+
+<!--
+========= facebook templates =========
+-->
+<script id="facebook-user-template" type="text/x-handlebars-template">
+	<div class="card">
+		<span class="cardType social-small-label"><a href="https://facebook.com/{{user.screen_name}}" target="_blank">facebook</a></span>
+		<p class="card-title">{{user.screen_name}}</p>
+		<p>I created my account {{#timeagoHelper created_time}}{{timeagoValue}}{{/timeagoHelper}}, I have {{user.followers_count}} followers and am following {{user.friends_count}} people, and have tweeted {{user.statuses_count}} times.</p>
+		<p class="url"><a href="https://facebook.com/{{user.screen_name}}" target="_blank">See my facebook profile</a></p>
+	</div>
+</script>
+
+<script id="facebook-feed-template" type="text/x-handlebars-template">
+	<span class="cardType social-small-label"><a href="https://www.facebook.com/{{username}}" target="_blank">facebook</a></span>
+	<p class="card-title">{{#timeagoHelper created_time}}{{timeagoValue}}{{/timeagoHelper}}</p>
+	<p>I statused "{{story}}"</p>
+	<p class="url"><a href="https://twitter.com/{{user.screen_name}}/status/{{id_str}}" target="_blank">See it here</a></p>
+</script>
+
 
 <script src="/me/static/js/jquery-2.0.3.min.js"></script>
 <script src="/me/static/js/underscore-min.js"></script>

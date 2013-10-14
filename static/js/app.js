@@ -46,55 +46,34 @@
 		AboutMe.twitter();
 		AboutMe.facebook();
 	});
-/*
-	enquire.register("(min-width: 1900px)", {
+
+	enquire.register("(min-width: 1600px)", {
     	match : function() {
-    		console.log("To 4 from " + AboutMe.previousState);
-    		if (AboutMe.previousState <= 2) {
-	    		moveListToElement(AboutMe.events.stack, $('#stack-cards'));
-	    		moveListToElement(AboutMe.events.github, $('#github-cards'));
-    		}
-    		if (AboutMe.previousState <= 3) {
-	    		moveListToElement(AboutMe.events.twitter, $('#twitter-cards'));
-	    		moveListToElement(AboutMe.events.facebook, $('#facebook-cards'));
-    		}
-    		AboutMe.previousState = 4;
+    		moveListToElement(AboutMe.events.stack, $('#stack-cards'));
+    		moveListToElement(AboutMe.events.github, $('#github-cards'));
+    		moveListToElement(AboutMe.events.twitter, $('#twitter-cards'));
+    		moveListToElement(AboutMe.events.facebook, $('#facebook-cards'));
     	}
 	});
 
-	enquire.register("(min-width: 1800px) and (max-width: 1899px)", {
+	enquire.register("(min-width: 1200px) and (max-width: 1599px)", {
     	match : function() {
-    		console.log("To 3 from " + AboutMe.previousState);
-    		if (AboutMe.previousState >= 4) {
-    			moveListToElement(AboutMe.events.social, $('#social-cards'));
-    		} else if (AboutMe.previousState <= 2) {
-	    		moveListToElement(AboutMe.events.stack, $('#stack-cards'));
-	    		moveListToElement(AboutMe.events.github, $('#github-cards'));	
-    		}
-    		AboutMe.previousState = 3;
+			moveListToElement(AboutMe.events.social, $('#social-cards'));
+    		moveListToElement(AboutMe.events.stack, $('#stack-cards'));
+    		moveListToElement(AboutMe.events.github, $('#github-cards'));
     	}
 	});
 
-	enquire.register("(min-width: 1700px) and (max-width: 1799px)", {
+	enquire.register("(min-width: 800px) and (max-width: 1199px)", {
     	match : function() {
-    		console.log("To 2 from " + AboutMe.previousState);
-    		if (AboutMe.previousState >= 4) {
-    			moveListToElement(AboutMe.events.social, $('#social-cards'));
-    		}
-    		if (AboutMe.previousState >= 3 || AboutMe.previousState <= 1) {
-	    		moveListToElement(AboutMe.events.tech, $('#tech-cards'));
-    		}
-    		AboutMe.previousState = 2;
+			moveListToElement(AboutMe.events.social, $('#social-cards'));
+    		moveListToElement(AboutMe.events.tech, $('#tech-cards'));
     	}
 	});
 
-	enquire.register("(max-width: 1699px)", {
+	enquire.register("(max-width: 799px)", {
     	match : function() {
-    		console.log("To 1 from " + AboutMe.previousState);
-    		if (AboutMe.previousState >= 2) {
-    			moveListToElement(AboutMe.events.all, $('#all-cards'));
-    		}
-    		AboutMe.previousState = 1;
+    		moveListToElement(AboutMe.events.all, $('#all-cards'));
     	}
 	});
 
@@ -103,5 +82,5 @@
 			element.append(event.template);
 		});
 	}
-*/
+
 })();
