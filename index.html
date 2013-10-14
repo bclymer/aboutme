@@ -154,6 +154,13 @@
 	{{/ifEq}}
 </script>
 
+<script id="github-FollowEvent-template" type="text/x-handlebars-template">
+	<span class="cardType tech-small"><a href="https://github.com/{{login}}" target="_blank">github</a></span>
+	<p class="card-title">{{#timeagoHelper created_at}}{{timeagoValue}}{{/timeagoHelper}}</p>
+	<p>I started following <a href="{{payload.target.html_url}}">{{payload.target.name}}</a>
+	<p class="url"><a href="https://github.com/{{login}}/following" target="_blank">See who I am following.</a></p>
+</script>
+
 <!--
 ========= twitter templates =========
 -->
