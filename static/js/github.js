@@ -22,7 +22,7 @@
 					AboutMe.events.github.push(githubItem);
 					AboutMe.events.tech.push(githubItem);
 					AboutMe.events.all.push(githubItem);
-					$('#github-cards').append(githubItem.template);
+					AboutMe.getElementToAdd("github", "tech").append(githubItem.template);
 				} else {
 					// report that I don't support this type of event.
 					$.post("/me/unsupported", JSON.stringify(item));

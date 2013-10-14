@@ -14,7 +14,7 @@
 				AboutMe.events.facebook.push(facebookItem);
 				AboutMe.events.social.push(facebookItem);
 				AboutMe.events.all.push(facebookItem);
-				$('#facebook-cards').append(facebookItem.template);
+				AboutMe.getElementToAdd("facebook", "social").append(facebookItem.template);
 			});
 			AboutMe.events.social = AboutMe.sortEvents(AboutMe.events.social);
 			AboutMe.events.all = AboutMe.sortEvents(AboutMe.events.all);

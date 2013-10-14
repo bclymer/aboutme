@@ -12,7 +12,7 @@
 		all: [],
 	};
 
-	AboutMe.previousState = -1;
+	AboutMe.responsiveState = -1;
 
 	AboutMe.sortEvents = function(events) {
 		return _.sortBy(events, function(event) {
@@ -39,6 +39,23 @@
 		});
 	});
 
+	AboutMe.getElementToAdd = function(primary, secondary) {
+		switch (AboutMe.responsiveState) {
+			case 4:
+				return $('#all-cards');
+			case 3:
+				return $('#' + secondary + '-cards');
+			case 2:
+				if (secondary == "tech") {
+					return $('#' + primary + '-cards');
+				} else {
+					return $('#' + secondary + '-cards');
+				}
+			case 1:
+				return $('#' + primary + '-cards');
+		}
+	};
+
 	$(document).ready(function() {
 		AboutMe.cardTemplate = Handlebars.compile($("#card-template").html());
 		AboutMe.stack();
@@ -49,6 +66,7 @@
 
 	enquire.register("(min-width: 1600px)", {
     	match : function() {
+    		AboutMe.responsiveState = 1;
     		moveListToElement(AboutMe.events.stack, $('#stack-cards'));
     		moveListToElement(AboutMe.events.github, $('#github-cards'));
     		moveListToElement(AboutMe.events.twitter, $('#twitter-cards'));
@@ -58,6 +76,7 @@
 
 	enquire.register("(min-width: 1200px) and (max-width: 1599px)", {
     	match : function() {
+    		AboutMe.responsiveState = 2;
 			moveListToElement(AboutMe.events.social, $('#social-cards'));
     		moveListToElement(AboutMe.events.stack, $('#stack-cards'));
     		moveListToElement(AboutMe.events.github, $('#github-cards'));
@@ -66,6 +85,7 @@
 
 	enquire.register("(min-width: 800px) and (max-width: 1199px)", {
     	match : function() {
+    		AboutMe.responsiveState = 3;
 			moveListToElement(AboutMe.events.social, $('#social-cards'));
     		moveListToElement(AboutMe.events.tech, $('#tech-cards'));
     	}
@@ -73,6 +93,7 @@
 
 	enquire.register("(max-width: 799px)", {
     	match : function() {
+    		AboutMe.responsiveState = 4;
     		moveListToElement(AboutMe.events.all, $('#all-cards'));
     	}
 	});

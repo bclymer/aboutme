@@ -24,7 +24,7 @@
 					AboutMe.events.stack.push(stackItem);
 					AboutMe.events.tech.push(stackItem);
 					AboutMe.events.all.push(stackItem);
-					$('#stack-cards').append(stackItem.template);
+					AboutMe.getElementToAdd("stack", "tech").append(stackItem.template);
 				} else {
 					$.post("/me/unsupported", JSON.stringify(item));
 				}

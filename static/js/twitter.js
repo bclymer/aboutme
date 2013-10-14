@@ -16,7 +16,7 @@
 				AboutMe.events.twitter.push(twitterItem);
 				AboutMe.events.social.push(twitterItem);
 				AboutMe.events.all.push(twitterItem);
-				$('#twitter-cards').append(twitterItem.template);
+				AboutMe.getElementToAdd("twitter", "social").append(twitterItem.template);
 			});
 			AboutMe.events.social = AboutMe.sortEvents(AboutMe.events.social);
 			AboutMe.events.all = AboutMe.sortEvents(AboutMe.events.all);
