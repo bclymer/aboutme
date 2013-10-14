@@ -67,6 +67,27 @@ func ConnectRedis() {
 	}()
 }
 
+func RedisGet(key string) (string, error) {
+	responseChannel := make(chan (RedisResponse))
+	redisRequest := RedisRequest{
+		Get:             true,
+		Key:             key,
+		ResponseChannel: responseChannel,
+	}
+	RedisRequestChannel <- redisRequest
+	redisResponse := <-redisRequest.ResponseChannel
+	return redisResponse.Value, redisResponse.Err
+}
+
+func RedisPut(key, value string) {
+	redisRequest := RedisRequest{
+		Get:   false,
+		Key:   key,
+		Value: value,
+	}
+	RedisRequestChannel <- redisRequest
+}
+
 func redisPut(key, value string) {
 	// check for client disconnect.
 	fullKey := redisPrefix + key

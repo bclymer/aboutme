@@ -1,6 +1,11 @@
 (function() {
+	var templates = {
+		"commented": Handlebars.compile($("#stack-commented-template").html()),
+		"answered": Handlebars.compile($("#stack-answered-template").html()),
+		"badge": Handlebars.compile($("#stack-badge-template").html()),
+		"suggested": Handlebars.compile($("#stack-suggested-template").html()),
+	};
 	var userTemplate = Handlebars.compile($("#stack-user-template").html());
-	var timelineTemplate = Handlebars.compile($("#stack-timeline-template").html());
 
 	AboutMe.stack = function() {
 		$('#stack-link').html('<a href="http://stackoverflow.com/users/' + AboutMe.config.stack + '" target="_blank">stackoverflow</a>');
@@ -11,14 +16,18 @@
 		}, "json");
 		$.get("/me/stack/timeline", function(data) {
 			_.each(data.items, function(item) {
-				var stackItem = {
-					template: $(AboutMe.cardTemplate({template: timelineTemplate(item)})),
-					timestamp: item.creation_date * 1000
-				};
-				AboutMe.events.stack.push(stackItem);
-				AboutMe.events.tech.push(stackItem);
-				AboutMe.events.all.push(stackItem);
-				$('#stack-cards').append(stackItem.template);
+				if (templates[item.timeline_type]) {
+					var stackItem = {
+						template: $(AboutMe.cardTemplate({template: templates[item.timeline_type](item)})),
+						timestamp: item.creation_date * 1000
+					};
+					AboutMe.events.stack.push(stackItem);
+					AboutMe.events.tech.push(stackItem);
+					AboutMe.events.all.push(stackItem);
+					$('#stack-cards').append(stackItem.template);
+				} else {
+					$.post("/me/unsupported", JSON.stringify(item));
+				}
 			});
 			AboutMe.events.tech = AboutMe.sortEvents(AboutMe.events.tech);
 			AboutMe.events.all = AboutMe.sortEvents(AboutMe.events.all);

@@ -60,27 +60,37 @@
 		{{badge_counts.bronze}} bronze {{#plural badge_counts.bronze "badge"}}{{word}}{{/plural}},
 		{{badge_counts.silver}} silver {{#plural badge_counts.silver "badge"}}{{word}}{{/plural}}, and
 		{{badge_counts.gold}} gold {{#plural badge_counts.gold "badge"}}{{word}}{{/plural}}.</p>
-		<p class="url"><a href="{{link}}" target="_blank">My stack profile</a></p>
+		<p class="url"><a href="{{link}}" target="_blank">See my stack profile</a></p>
 	</div>
 </script>
 
-<script id="stack-timeline-template" type="text/x-handlebars-template">
+<script id="stack-commented-template" type="text/x-handlebars-template">
 	<span class="cardType tech-small"><a href="http://stackoverflow.com/users/{{user_id}}" target="_blank">stackoverflow</a></span>
 	<p class="card-title">{{#timeagoHelper creation_date}}{{timeagoValue}}{{/timeagoHelper}}</p>
-	<p>I
-		{{#ifEq timeline_type "answered"}}
-			answered the question "{{{title}}}".
-		{{else}}
-			commented on
-			{{#ifEq post_type "question"}}
-				the question "{{{title}}}"
-			{{else}}
-				an answer.
-			{{/ifEq}}
-		{{/ifEq}}
-	</p>
-	{{#if detail}}<p>"{{{detail}}}"</p>{{/if}}
-	<p class="url"><a href="http://stackoverflow.com/questions/{{post_id}}" target="_blank">See it here</a></p>
+	<p>I commented on {{#ifEq post_type "answer"}}an answer to{{/ifEq}} the question "{{{title}}}".</p>
+	<p>"{{{detail}}}".</p>
+	<p class="url"><a href="http://stackoverflow.com/questions/{{post_id}}" target="_blank">See my comment</a></p>
+</script>
+
+<script id="stack-answered-template" type="text/x-handlebars-template">
+	<span class="cardType tech-small"><a href="http://stackoverflow.com/users/{{user_id}}" target="_blank">stackoverflow</a></span>
+	<p class="card-title">{{#timeagoHelper creation_date}}{{timeagoValue}}{{/timeagoHelper}}</p>
+	<p>I answered the question "{{{title}}}".</p>
+	<p class="url"><a href="http://stackoverflow.com/questions/{{post_id}}" target="_blank">See my answer</a></p>
+</script>
+
+<script id="stack-suggested-template" type="text/x-handlebars-template">
+	<span class="cardType tech-small"><a href="http://stackoverflow.com/users/{{user_id}}" target="_blank">stackoverflow</a></span>
+	<p class="card-title">{{#timeagoHelper creation_date}}{{timeagoValue}}{{/timeagoHelper}}</p>
+	<p>I suggested an edit to the post {{{title}}}.</p>
+	<p class="url"><a href="http://stackoverflow.com/suggested-edits/{{suggested_edit_id}}" target="_blank">See my suggestion</a></p>
+</script>
+
+<script id="stack-badge-template" type="text/x-handlebars-template">
+	<span class="cardType tech-small"><a href="http://stackoverflow.com/users/{{user_id}}" target="_blank">stackoverflow</a></span>
+	<p class="card-title">{{#timeagoHelper creation_date}}{{timeagoValue}}{{/timeagoHelper}}</p>
+	<p>I earned the badge <a href="http://stackoverflow.com/help/badges/{{badge_id}}" target="_blank">{{detail}}</a>.</p>
+	<p class="url"><a href="http://stackoverflow.com/users/{{user_id}}/?tab=badges" target="_blank">See all my badges</a></p>
 </script>
 
 <!--
