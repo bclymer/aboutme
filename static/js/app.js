@@ -9,7 +9,7 @@
 		facebook: [],
 		tech: [],
 		social: [],
-		all: [],
+		all: []
 	};
 
 	AboutMe.responsiveState = -1;

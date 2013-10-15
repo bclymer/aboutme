@@ -3,7 +3,7 @@
 		"commented": Handlebars.compile($("#stack-commented-template").html()),
 		"answered": Handlebars.compile($("#stack-answered-template").html()),
 		"badge": Handlebars.compile($("#stack-badge-template").html()),
-		"suggested": Handlebars.compile($("#stack-suggested-template").html()),
+		"suggested": Handlebars.compile($("#stack-suggested-template").html())
 	};
 	var userTemplate = Handlebars.compile($("#stack-user-template").html());
 

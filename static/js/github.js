@@ -5,7 +5,7 @@
 		"DeleteEvent": Handlebars.compile($("#github-DeleteEvent-template").html()),
 		"IssuesEvent": Handlebars.compile($("#github-IssuesEvent-template").html()),
 		"IssueCommentEvent": Handlebars.compile($("#github-IssueCommentEvent-template").html()),
-		"FollowEvent": Handlebars.compile($("#github-FollowEvent-template").html()),
+		"FollowEvent": Handlebars.compile($("#github-FollowEvent-template").html())
 	};
 
 	var userTemplate = Handlebars.compile($("#github-user-template").html());
