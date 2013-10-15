@@ -159,6 +159,20 @@
 	<p class="url"><a href="https://github.com/{{login}}/following" target="_blank">See who I am following</a></p>
 </script>
 
+<script id="github-PullRequestEvent-template" type="text/x-handlebars-template">
+	<span class="cardType tech-small-label"><a href="https://github.com/{{login}}" target="_blank">github</a></span>
+	<p class="card-title">{{#timeagoHelper created_at}}{{timeagoValue}}{{/timeagoHelper}}</p>
+	<p>I {{payload.action}} the pull request "{{payload.pull_request.title}}" for <a href="https://github.com/{{repo.name}}">{{repo.name}}</a>.
+	<p class="url"><a href="{{payload.pull_request.html_url}}" target="_blank">See the PR here</a></p>
+</script>
+
+<script id="github-MemberEvent-template" type="text/x-handlebars-template">
+	<span class="cardType tech-small-label"><a href="https://github.com/{{login}}" target="_blank">github</a></span>
+	<p class="card-title">{{#timeagoHelper created_at}}{{timeagoValue}}{{/timeagoHelper}}</p>
+	<p>I {{payload.action}} {{payload.member.login}} to <a href="https://github.com/{{repo.name}}">{{repo.name}}</a>.
+	<p class="url"><a href="https://github.com/{{payload.member.login}}" target="_blank">See them here</a></p>
+</script>
+
 <!--
 ========= twitter templates =========
 -->
