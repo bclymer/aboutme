@@ -54,9 +54,7 @@ func TwitterTimeline(w http.ResponseWriter, r *http.Request) {
 }
 
 func getTwitterUrl(url string) string {
-	response, err := RedisGet(url)
-	if err != nil {
-		log.Println("Cache miss -", url, err)
+	return RedisCache(url, func() string {
 		resp, err := oauthClient.Get(http.DefaultClient, twitterClient.Credentials, url, nil)
 		if err != nil {
 			log.Println("Twitter Err Get", err)
@@ -72,9 +70,6 @@ func getTwitterUrl(url string) string {
 			log.Println("Twitter Err Read", err)
 			return ""
 		}
-		response := string(responseBytes)
-		RedisPut(url, response)
-		return response
-	}
-	return response
+		return string(responseBytes)
+	})
 }

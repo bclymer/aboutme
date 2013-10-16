@@ -14,19 +14,13 @@ const (
 var (
 	client              *redis.Client
 	redisPrefix         = "aboutme_"
-	RedisRequestChannel = make(chan (RedisRequest))
+	redisRequestChannel = make(chan (RedisRequest))
 )
 
 type RedisRequest struct {
-	Get             bool
 	Key             string
-	Value           string
-	ResponseChannel chan RedisResponse
-}
-
-type RedisResponse struct {
-	Value string
-	Err   error
+	CacheFunction   RedisCacheFunction
+	ResponseChannel chan string
 }
 
 type RedisAuth struct {
@@ -55,37 +49,37 @@ func ConnectRedis() {
 	go func() {
 		defer client.Quit()
 		for {
-			request := <-RedisRequestChannel
-			if request.Get {
-				value, err := redisGet(request.Key)
-				response := RedisResponse{value, err}
-				request.ResponseChannel <- response
-			} else {
-				redisPut(request.Key, request.Value)
-			}
+			request := <-redisRequestChannel
+			value := redisCache(request.Key, request.CacheFunction)
+			request.ResponseChannel <- value
 		}
 	}()
 }
 
-func RedisGet(key string) (string, error) {
-	responseChannel := make(chan (RedisResponse))
+type RedisCacheFunction func() string
+
+func RedisCache(key string, redisCacheFunction RedisCacheFunction) string {
+	responseChannel := make(chan (string))
 	redisRequest := RedisRequest{
-		Get:             true,
 		Key:             key,
+		CacheFunction:   redisCacheFunction,
 		ResponseChannel: responseChannel,
 	}
-	RedisRequestChannel <- redisRequest
+	redisRequestChannel <- redisRequest
 	redisResponse := <-redisRequest.ResponseChannel
-	return redisResponse.Value, redisResponse.Err
+	return redisResponse
 }
 
-func RedisPut(key, value string) {
-	redisRequest := RedisRequest{
-		Get:   false,
-		Key:   key,
-		Value: value,
+func redisCache(key string, redisCacheFunction RedisCacheFunction) string {
+	value, err := redisGet(key)
+	if err != nil && err == redis.ErrNilReply {
+		log.Println("Cache miss -", key)
+		value = redisCacheFunction()
+		redisPut(key, value)
+	} else {
+		log.Println("Cache hit -", key)
 	}
-	RedisRequestChannel <- redisRequest
+	return value
 }
 
 func redisPut(key, value string) {

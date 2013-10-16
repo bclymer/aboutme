@@ -14,12 +14,20 @@ const (
 
 func GithubEvents(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	fmt.Fprint(w, Get("https://api.github.com/users/"+GithubId+"/events/public"))
+	url := "https://api.github.com/users/" + GithubId + "/events/public"
+	response := RedisCache(url, func() string {
+		return Get(url)
+	})
+	fmt.Fprint(w, response)
 }
 
 func GithubUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	fmt.Fprint(w, Get("https://api.github.com/users/"+GithubId))
+	url := "https://api.github.com/users/" + GithubId
+	response := RedisCache(url, func() string {
+		return Get(url)
+	})
+	fmt.Fprint(w, response)
 }
 
 func GithubUnsupported(w http.ResponseWriter, r *http.Request) {
