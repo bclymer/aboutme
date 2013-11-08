@@ -35,7 +35,7 @@ func GithubUnsupported(w http.ResponseWriter, r *http.Request) {
 		// let them know POST only
 		return
 	}
-	file, err := os.OpenFile("aboutme/unsupported.txt", os.O_RDWR|os.O_APPEND, 0666)
+	file, err := os.OpenFile("unsupported.txt", os.O_RDWR|os.O_APPEND, 0666)
 	if err != nil {
 		log.Println(err)
 		return

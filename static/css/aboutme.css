@@ -57,7 +57,7 @@ div.card p { margin: 0 0 15px 0 }
 div.card p.card-title { font-size: 28px }
 div.card p.url {
     border-top: 1px solid #e5e5e5;
-    background-image: url('/me/static/images/url.png');
+    background-image: url('/static/images/url.png');
     background-repeat: no-repeat;
     padding: 6px 0 0 30px;
     height: 30px;

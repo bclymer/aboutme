@@ -9,12 +9,12 @@
 
 	AboutMe.stack = function() {
 		$('#stack-link').html('<a href="http://stackoverflow.com/users/' + AboutMe.config.stack + '" target="_blank">stackoverflow</a>');
-		$.get("/me/stack/me", function(data) {
+		$.get("/stack/me", function(data) {
 			_.each(data.items, function(item) {
 				$('#stack-user').html(userTemplate(item));
 			});
 		}, "json");
-		$.get("/me/stack/timeline", function(data) {
+		$.get("/stack/timeline", function(data) {
 			_.each(data.items, function(item) {
 				if (templates[item.timeline_type]) {
 					var stackItem = {
@@ -26,7 +26,7 @@
 					AboutMe.events.all.push(stackItem);
 					AboutMe.getElementToAdd("stack", "tech").append(stackItem.template);
 				} else {
-					$.post("/me/unsupported", JSON.stringify(item));
+					$.post("/unsupported", JSON.stringify(item));
 				}
 			});
 			AboutMe.events.tech = AboutMe.sortEvents(AboutMe.events.tech);

@@ -14,7 +14,7 @@
 
 	AboutMe.github = function() {
 		$('#github-link').html('<a href="https://www.github.com/' + AboutMe.config.github + '" target="_blank">github</a>');
-		$.get("/me/github/events", function(data) {
+		$.get("/github/events", function(data) {
 			_.each(data, function(item) {
 				if (templates[item.type]) {
 					var githubItem = {
@@ -27,13 +27,13 @@
 					AboutMe.getElementToAdd("github", "tech").append(githubItem.template);
 				} else {
 					// report that I don't support this type of event.
-					$.post("/me/unsupported", JSON.stringify(item));
+					$.post("/unsupported", JSON.stringify(item));
 				}
 			});
 			AboutMe.events.tech = AboutMe.sortEvents(AboutMe.events.tech);
 			AboutMe.events.all = AboutMe.sortEvents(AboutMe.events.all);
 		}, "json");
-		$.get("/me/github/me", function(data) {
+		$.get("/github/me", function(data) {
 			$('#github-user').html(userTemplate(data));
 		}, "json");
 	}

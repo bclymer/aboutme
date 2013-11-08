@@ -4,7 +4,7 @@
 
 	AboutMe.twitter = function() {
 		$('#twitter-link').html('<a href="https://twitter.com/' + AboutMe.config.twitter + '" target="_blank">twitter</a>');
-		$.get("/me/twitter/timeline", function(data) {
+		$.get("/twitter/timeline", function(data) {
 			if (data.length > 0) {
 				$('#twitter-user').html(userTemplate(data[0]));
 			}

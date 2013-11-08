@@ -5,7 +5,7 @@
 	AboutMe.facebook = function() {
 		$('#facebook-link').html('<a href="https://www.facebook.com/' + AboutMe.config.facebook + '" target="_blank">facebook</a>');
 		return;
-		$.get("/me/facebook/feed", function(data) {
+		$.get("/facebook/feed", function(data) {
 			_.each(data.data, function(item) {
 				var facebookItem = {
 					template: $(AboutMe.cardTemplate({template: timelineTemplate(item)})),
