@@ -1,21 +1,14 @@
-package aboutme
-
-//package main
+package main
 
 import (
-	"bclymer/aboutme/aboutme"
+	"aboutme/aboutme"
 	"html/template"
 	"log"
 	"net/http"
 )
 
-const (
-	urlPrefix    = "/me"
-	folderPrefix = "aboutme/"
-)
-
 func handler(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "aboutme/index.html")
+	http.ServeFile(w, r, "index.html")
 }
 
 func config(w http.ResponseWriter, r *http.Request) {
@@ -55,19 +48,16 @@ func main() {
 	aboutme.Setup(notifier)
 	<-notifier
 
-	http.HandleFunc(urlPrefix+"/", handler)
-	http.HandleFunc(urlPrefix+"/stack/timeline", aboutme.StackTimeline)
-	http.HandleFunc(urlPrefix+"/stack/me", aboutme.StackUser)
-	http.HandleFunc(urlPrefix+"/github/events", aboutme.GithubEvents)
-	http.HandleFunc(urlPrefix+"/github/me", aboutme.GithubUser)
-	http.HandleFunc(urlPrefix+"/twitter/timeline", aboutme.TwitterTimeline)
-	http.HandleFunc(urlPrefix+"/facebook/feed", aboutme.FacebookFeed)
-	http.HandleFunc(urlPrefix+"/unsupported", aboutme.GithubUnsupported)
-	http.HandleFunc(urlPrefix+"/js/config.js", config)
-	http.Handle(urlPrefix+"/static/", http.StripPrefix(urlPrefix+"/static", http.FileServer(http.Dir(folderPrefix+"static"))))
+	http.HandleFunc("/", handler)
+	http.HandleFunc("/stack/timeline", aboutme.StackTimeline)
+	http.HandleFunc("/stack/me", aboutme.StackUser)
+	http.HandleFunc("/github/events", aboutme.GithubEvents)
+	http.HandleFunc("/github/me", aboutme.GithubUser)
+	http.HandleFunc("/twitter/timeline", aboutme.TwitterTimeline)
+	http.HandleFunc("/facebook/feed", aboutme.FacebookFeed)
+	http.HandleFunc("/unsupported", aboutme.GithubUnsupported)
+	http.HandleFunc("/js/config.js", config)
+	http.Handle("/static/", http.StripPrefix("/static", http.FileServer(http.Dir("static"))))
 	log.Println("aboutme is running...")
-}
-
-func StartServer() {
-	main()
+	http.ListenAndServe(":42126", nil)
 }

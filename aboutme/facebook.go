@@ -30,7 +30,7 @@ func FacebookFeed(w http.ResponseWriter, r *http.Request) {
 func Setup(notifier chan bool) {
 	log.Println("Setting up facebook")
 	var facebookAuth FacebookAuth
-	content, err := ioutil.ReadFile("aboutme/facebookAuth.json")
+	content, err := ioutil.ReadFile("facebookAuth.json")
 	if err != nil {
 		panic(err)
 	}

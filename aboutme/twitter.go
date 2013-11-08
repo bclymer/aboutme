@@ -35,7 +35,7 @@ type TwitterAuth struct {
 
 func init() {
 	var twitterAuth TwitterAuth
-	content, err := ioutil.ReadFile("aboutme/twitterAuth.json")
+	content, err := ioutil.ReadFile("twitterAuth.json")
 	if err != nil {
 		panic(err)
 	}
