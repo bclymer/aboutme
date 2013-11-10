@@ -96,3 +96,8 @@ func redisGet(key string) (string, error) {
 	log.Println("GET -", fullKey)
 	return client.Get(fullKey)
 }
+
+func RedisDelete(key string) {
+	fullKey := redisPrefix + key
+	client.Del(fullKey)
+}

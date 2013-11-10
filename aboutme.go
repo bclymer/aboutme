@@ -2,13 +2,44 @@ package main
 
 import (
 	"aboutme/aboutme"
+	"fmt"
 	"html/template"
+	"io/ioutil"
 	"log"
 	"net/http"
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "index.html")
+}
+
+func editInfo(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "GET" {
+		http.ServeFile(w, r, "editInfo.html")
+	} else {
+		body, err := ioutil.ReadAll(r.Body)
+		if err != nil {
+			fmt.Fprint(w, "Couldn't read post body")
+			log.Println("Couldn't read post body", err)
+			return
+		}
+		auth := r.FormValue("auth")
+		correctAuth, err := ioutil.ReadFile("auth")
+		if err != nil {
+			fmt.Fprint(w, "Couldn't auth file")
+			log.Println("Couldn't read auth file", err)
+			return
+		}
+		if auth != string(correctAuth) {
+			fmt.Fprint(w, "My security is bad and I should feel bad, but you still failed :P")
+			log.Println("My security is bad and I should feel bad, but you still failed :P")
+			return
+		}
+		log.Println("POST body", string(body))
+		ioutil.WriteFile("me_events.json", body, 7777)
+		aboutme.RedisDelete("me_events")
+		fmt.Fprint(w, "Updated successfully and cache cleared")
+	}
 }
 
 func config(w http.ResponseWriter, r *http.Request) {
@@ -42,6 +73,7 @@ func main() {
 	aboutme.ConnectRedis()
 
 	http.HandleFunc("/", handler)
+	http.HandleFunc("/edit/info", editInfo)
 	http.HandleFunc("/stack/timeline", aboutme.StackTimeline)
 	http.HandleFunc("/stack/me", aboutme.StackUser)
 	http.HandleFunc("/github/events", aboutme.GithubEvents)
