@@ -8,7 +8,7 @@
 			}
 			if (AboutMe.responsiveState >= 2) {
 				moveListToElement(AboutMe.events.twitter, $('#twitter-cards'));
-				moveListToElement(AboutMe.events.facebook, $('#facebook-cards'));
+				moveListToElement(AboutMe.events.me, $('#me-cards'));
 			}
 			AboutMe.responsiveState = 1;
 		}

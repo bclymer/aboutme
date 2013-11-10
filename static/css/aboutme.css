@@ -76,6 +76,7 @@ div.card img.full {
 }
 h2.header {
     margin-left: 15px;
+    width: 100%;
 }
 span.cardType {
     color: #b5b5b5;

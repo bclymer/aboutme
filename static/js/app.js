@@ -6,7 +6,7 @@
 		stack: [],
 		github: [],
 		twitter: [],
-		facebook: [],
+		me: [],
 		tech: [],
 		social: [],
 		all: []
@@ -42,7 +42,7 @@
 		AboutMe.stack();
 		AboutMe.github();
 		AboutMe.twitter();
-		AboutMe.facebook();
+		AboutMe.me();
 	});
 
 })();

@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="topMenu">
-  Brian Clymer - What I've Been Doing
+  This website is open source and configurable on <a href="https://github.com/bclymer/aboutme">my github account</a>
 </div>
 	<div class="gNow tech-large" id="stack-cards">
 		<h2 class="header tech-large" id="stack-link"></h2>
@@ -24,9 +24,8 @@
 		<h2 class="header social-large" id="twitter-link"></h2>
 		<li id="twitter-user"></li>
 	</div>
-	<div class="gNow social-large" id="facebook-cards">
-		<h2 class="header social-large" id="facebook-link"></h2>
-		<li id="facebook-user"></li>
+	<div class="gNow social-large" id="me-cards">
+		<h2 class="header social-large" id="me-link"><a href=http://www.linkedin.com/pub/brian-clymer/81/148/13b>brian clymer</a></h2>
 	</div>
 	<div class="gNow tech-small" id="tech-cards">
 	<h2 class="header tech-small">technology</h2>
@@ -221,22 +220,13 @@
 </script>
 
 <!--
-========= facebook templates =========
+========= me templates =========
 -->
-<script id="facebook-user-template" type="text/x-handlebars-template">
-	<div class="card">
-		<span class="cardType social-small-label"><a href="https://facebook.com/{{user.screen_name}}" target="_blank">facebook</a></span>
-		<p class="card-title">{{user.screen_name}}</p>
-		<p>I created my account {{#timeagoHelper created_time}}{{timeagoValue}}{{/timeagoHelper}}, I have {{user.followers_count}} followers and am following {{user.friends_count}} people, and have tweeted {{user.statuses_count}} times.</p>
-		<p class="url"><a href="https://facebook.com/{{user.screen_name}}" target="_blank">See my facebook profile</a></p>
-	</div>
-</script>
-
-<script id="facebook-feed-template" type="text/x-handlebars-template">
-	<span class="cardType social-small-label"><a href="https://www.facebook.com/{{username}}" target="_blank">facebook</a></span>
-	<p class="card-title">{{#timeagoHelper created_time}}{{timeagoValue}}{{/timeagoHelper}}</p>
-	<p>I statused "{{story}}"</p>
-	<p class="url"><a href="https://twitter.com/{{user.screen_name}}/status/{{id_str}}" target="_blank">See it here</a></p>
+<script id="me-info-template" type="text/x-handlebars-template">
+	<span class="cardType social-small-label">me</span>
+	<p class="card-title">{{title}}</p>
+	<p>{{{body}}}</p>
+	<p class="url"><a href="{{link.url}}" target="_blank">{{link.text}}</a></p>
 </script>
 
 <script src="/static/js/jquery-2.0.3.min.js"></script>
@@ -252,6 +242,6 @@
 <script src="/static/js/stack.js"></script>
 <script src="/static/js/github.js"></script>
 <script src="/static/js/twitter.js"></script>
-<script src="/static/js/facebook.js"></script>
+<script src="/static/js/me.js"></script>
 </body>
 </html>
