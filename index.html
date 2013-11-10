@@ -91,6 +91,20 @@
 	<p class="url"><a href="http://stackoverflow.com/users/{{user_id}}/?tab=badges" target="_blank">See all my badges</a></p>
 </script>
 
+<script id="stack-revision-template" type="text/x-handlebars-template">
+	<span class="cardType tech-small-label"><a href="http://stackoverflow.com/users/{{user_id}}" target="_blank">stackoverflow</a></span>
+	<p class="card-title">{{#timeagoHelper creation_date}}{{timeagoValue}}{{/timeagoHelper}}</p>
+	<p>I revised my {{post_type}} on "{{{title}}}".</p>
+	<p class="url"><a href="http://stackoverflow.com/questions/{{post_id}}" target="_blank">See my revision</a></p>
+</script>
+
+<script id="stack-accepted-template" type="text/x-handlebars-template">
+	<span class="cardType tech-small-label"><a href="http://stackoverflow.com/users/{{user_id}}" target="_blank">stackoverflow</a></span>
+	<p class="card-title">{{#timeagoHelper creation_date}}{{timeagoValue}}{{/timeagoHelper}}</p>
+	<p>I accepted an answer to my question "{{{title}}}".</p>
+	<p class="url"><a href="http://stackoverflow.com/questions/{{post_id}}" target="_blank">See the accepted answer</a></p>
+</script>
+
 <!--
 ========= github templates =========
 -->
@@ -171,6 +185,20 @@
 	<p class="card-title">{{#timeagoHelper created_at}}{{timeagoValue}}{{/timeagoHelper}}</p>
 	<p>I {{payload.action}} {{payload.member.login}} to <a href="https://github.com/{{repo.name}}">{{repo.name}}</a>.
 	<p class="url"><a href="https://github.com/{{payload.member.login}}" target="_blank">See them here</a></p>
+</script>
+
+<script id="github-PullRequestReviewCommentEvent-template" type="text/x-handlebars-template">
+	<span class="cardType tech-small-label"><a href="https://github.com/{{login}}" target="_blank">github</a></span>
+	<p class="card-title">{{#timeagoHelper created_at}}{{timeagoValue}}{{/timeagoHelper}}</p>
+	<p>I commented on a pull request in <a href="https://github.com/{{repo.name}}">{{repo.name}}</a>.
+	<p class="url"><a href="{{payload.comment.html_url}}" target="_blank">See the comment here</a></p>
+</script>
+
+<script id="github-WatchEvent-template" type="text/x-handlebars-template">
+	<span class="cardType tech-small-label"><a href="https://github.com/{{login}}" target="_blank">github</a></span>
+	<p class="card-title">{{#timeagoHelper created_at}}{{timeagoValue}}{{/timeagoHelper}}</p>
+	<p>I started watching the repo <a href="https://github.com/{{repo.name}}">{{repo.name}}</a>.
+	<p class="url"><a href="https://github.com/{{repo.name}}" target="_blank">See the repo for yourself</a></p>
 </script>
 
 <!--

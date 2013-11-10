@@ -7,7 +7,9 @@
 		"IssueCommentEvent": Handlebars.compile($("#github-IssueCommentEvent-template").html()),
 		"FollowEvent": Handlebars.compile($("#github-FollowEvent-template").html()),
 		"PullRequestEvent": Handlebars.compile($("#github-PullRequestEvent-template").html()),
-		"MemberEvent": Handlebars.compile($("#github-MemberEvent-template").html())
+		"MemberEvent": Handlebars.compile($("#github-MemberEvent-template").html()),
+		"PullRequestReviewCommentEvent": Handlebars.compile($("#github-PullRequestReviewCommentEvent-template").html()),
+		"WatchEvent": Handlebars.compile($("#github-WatchEvent-template").html())
 	};
 
 	var userTemplate = Handlebars.compile($("#github-user-template").html());
