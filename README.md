@@ -3,7 +3,7 @@ aboutme
 
 A page explaining what I've been doing on stack, github, and twitter.
 
-Currently running at [me.bclymer.com/](http://me.bclymer.com/).
+Currently running at [bclymer.com/](http://bclymer.com/).
 
 You can make this all about you by switching the ids in
 
