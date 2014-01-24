@@ -50,7 +50,7 @@ func init() {
 
 func TwitterTimeline(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	fmt.Fprint(w, getTwitterUrl("http://api.twitter.com/1.1/statuses/user_timeline.json"))
+	fmt.Fprint(w, getTwitterUrl("https://api.twitter.com/1.1/statuses/user_timeline.json"))
 }
 
 func getTwitterUrl(url string) string {
