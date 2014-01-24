@@ -9,7 +9,10 @@
 		"PullRequestEvent": Handlebars.compile($("#github-PullRequestEvent-template").html()),
 		"MemberEvent": Handlebars.compile($("#github-MemberEvent-template").html()),
 		"PullRequestReviewCommentEvent": Handlebars.compile($("#github-PullRequestReviewCommentEvent-template").html()),
-		"WatchEvent": Handlebars.compile($("#github-WatchEvent-template").html())
+		"WatchEvent": Handlebars.compile($("#github-WatchEvent-template").html()),
+		"PublicEvent": Handlebars.compile($("#github-PublicEvent-template").html()),
+		"CommitCommentEvent": Handlebars.compile($("#github-CommitCommentEvent-template").html()),
+		"GollumEvent": Handlebars.compile($("#github-GollumEvent-template").html())
 	};
 
 	var userTemplate = Handlebars.compile($("#github-user-template").html());
