@@ -210,7 +210,7 @@
 <script id="github-CommitCommentEvent-template" type="text/x-handlebars-template">
 	<span class="cardType tech-small-label"><a href="https://github.com/{{login}}" target="_blank">github</a></span>
 	<p class="card-title">{{#timeagoHelper created_at}}{{timeagoValue}}{{/timeagoHelper}}</p>
-	<p>I commented on a <a href="https://github.com/{{repo.name}}/commit/{{commit}}">commit</a> in the <a href="https://github.com/{{repo.name}}">{{repo.name}}</a> repo.
+	<p>I commented on a <a href="https://github.com/{{repo.name}}/commit/{{payload.comment.commit_id}}">commit</a> in the <a href="https://github.com/{{repo.name}}">{{repo.name}}</a> repo.
 	<p>"{{payload.comment.body}}"</p>
 	<p class="url"><a href="{{payload.comment.html_url}}" target="_blank">See the comment here</a></p>
 </script>
@@ -218,9 +218,9 @@
 <script id="github-GollumEvent-template" type="text/x-handlebars-template">
 	<span class="cardType tech-small-label"><a href="https://github.com/{{login}}" target="_blank">github</a></span>
 	<p class="card-title">{{#timeagoHelper created_at}}{{timeagoValue}}{{/timeagoHelper}}</p>
-	<p>I {{payload.pages.0.action}} the <a href="https://github.com/{{repo.name}}">{{repo.name}}</a> wiki.
-	<p>{{payload.pages.0.page_name}}</p>
-	<p class="url"><a href="{{payload.pages.0.html_url}}" target="_blank">See the wiki here</a></p>
+	<p>I {{payload.pages.0.action}} the <a href="https://github.com/{{repo.name}}">{{repo.name}}</a> <a href="https://github.com/{{repo.name}}/wiki">wiki</a>.
+	<p><a href="{{payload.pages.0.html_url}}" target="_blank">{{payload.pages.0.page_name}}</a></p>
+	<p class="url"><a href="{{payload.pages.0.html_url}}" target="_blank">See the page here</a></p>
 </script>
 
 <!--
