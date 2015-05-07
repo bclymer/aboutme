@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/bclymer/aboutme"
+	"github.com/bclymer/aboutme/aboutme"
 	"fmt"
 	"html/template"
 	"io/ioutil"
